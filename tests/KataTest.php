@@ -14,14 +14,13 @@ class KataTest extends TestCase
 
     protected function setUp(): void
     {
+        //Given
         $this->fizzBuzz = new FizzBuzz();
     }
 
     /** @test */
     public function return_one_when_print_number_one()
     {
-        //Given
-        
         //When
         $result = $this->fizzBuzz->print(1);
 
@@ -32,13 +31,22 @@ class KataTest extends TestCase
     /** @test */
     public function return_two_when_print_number_two()
     {
-        //Given
-
         //When
         $result = $this->fizzBuzz->print(2);
 
         //Then
         $this->assertEquals(2, $result);
+    }
+
+    /** @test */
+    public function throw_exception_when_argument_is_string()
+    {
+        //When
+        $result = $this->fizzBuzz->print('two');
+
+        //Then
+        $this->expectException(InvalidArgumentException::class);
+
     }
 
 
