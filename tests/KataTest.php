@@ -10,15 +10,20 @@ use PHPUnit\Framework\TestCase;
 class KataTest extends TestCase
 {
 
+    protected $fizzBuzz;
+
+    protected function setUp(): void
+    {
+        $this->fizzBuzz = new FizzBuzz();
+    }
 
     /** @test */
     public function return_one_when_print_number_one()
     {
         //Given
-        $fizzBuzz = new FizzBuzz();
-
+        
         //When
-        $result = $fizzBuzz->print(1);
+        $result = $this->fizzBuzz->print(1);
 
         //Then
         $this->assertEquals(1, $result);
@@ -28,10 +33,9 @@ class KataTest extends TestCase
     public function return_two_when_print_number_two()
     {
         //Given
-        $fizzBuzz = new FizzBuzz();
 
         //When
-        $result = $fizzBuzz->print(2);
+        $result = $this->fizzBuzz->print(2);
 
         //Then
         $this->assertEquals(2, $result);
