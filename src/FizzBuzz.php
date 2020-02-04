@@ -4,8 +4,14 @@
 namespace Kata;
 
 
+use DatabaseInterface;
+
 class FizzBuzz
 {
+    public function __construct(DatabaseInterface $database)
+    {
+    }
+
     public function print($number)
     {
         $this->isInteger($number);

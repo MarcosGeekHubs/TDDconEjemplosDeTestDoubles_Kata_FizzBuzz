@@ -3,6 +3,7 @@
 
 namespace Kata\Test;
 
+use Kata\DatabaseFake;
 use Kata\FizzBuzz;
 
 use PHPUnit\Framework\TestCase;
@@ -13,11 +14,14 @@ class KataTest extends TestCase
 {
 
     protected $fizzBuzz;
+    protected $databaseFake;
 
     protected function setUp(): void
     {
         //Given
-        $this->fizzBuzz = new FizzBuzz();
+        $this->databaseFake = new DatabaseFake();
+        $this->fizzBuzz = new FizzBuzz($this->databaseFake);
+
     }
 
     /** @test */
@@ -49,7 +53,16 @@ class KataTest extends TestCase
 
         //Then
 
+    }
 
+    /** @test */
+    public function return_three_when_print_number_tree()
+    {
+        //When
+        $result = $this->fizzBuzz->print(3);
+
+        //Then
+        $this->assertEquals('Fizz', $result);
     }
 
 
