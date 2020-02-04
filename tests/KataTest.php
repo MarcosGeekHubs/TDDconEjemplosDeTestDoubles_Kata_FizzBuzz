@@ -25,6 +25,7 @@ class KataTest extends TestCase
         $this->databaseFake = $this->createMock(DatabaseFake::class);
         //Test Double Stuff
         $this->databaseFake->method('getStringToThreeNumber')->willReturn('Fizz');
+        $this->databaseFake->method('getStringToFiveNumber')->willReturn('Buzz');
 
         //Test Double Spy
         $this->databaseFake->method('initConection');
@@ -85,6 +86,20 @@ class KataTest extends TestCase
 
         //Then
         $this->assertEquals('Fizz', $result);
+    }
+
+    /** @test */
+    public function return_buzz_when_print_number_five()
+    {
+        //Test double Spy
+        $this->databaseFake->expects($this->exactly(1))->method('initConection');
+
+        //Test double Stuff
+        //When
+        $result = $this->fizzBuzz->print(5);
+
+        //Then
+        $this->assertEquals('Buzz', $result);
     }
     
 
