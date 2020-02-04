@@ -6,6 +6,8 @@ namespace Kata\Test;
 use Kata\FizzBuzz;
 
 use PHPUnit\Framework\TestCase;
+use http\Exception\InvalidArgumentException;
+
 
 class KataTest extends TestCase
 {
@@ -41,11 +43,12 @@ class KataTest extends TestCase
     /** @test */
     public function throw_exception_when_argument_is_string()
     {
+        $this->expectException(\Exception::class);
         //When
         $result = $this->fizzBuzz->print('two');
 
         //Then
-        $this->expectException(InvalidArgumentException::class);
+
 
     }
 
