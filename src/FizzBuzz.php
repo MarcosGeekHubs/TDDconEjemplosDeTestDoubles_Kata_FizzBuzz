@@ -15,24 +15,32 @@ class FizzBuzz
 
     public function print($number)
     {
-        $this->isInteger($number);
-
-        if (0 === $number % 3) {
-            return $this->database->getStringToThreeNumber();
+        $this->isNotIntegerThowException($number);
+        $result = $number;
+        if ($this->isNumberMultipleOfThree($number)) {
+            $result =  $this->database->getStringToThreeNumber();
         }
 
-
-        return $number;
+        return $result;
     }
 
     /**
      * @param $number
      * @throws \Exception
      */
-    protected function isInteger($number): void
+    protected function isNotIntegerThowException($number): void
     {
         if (!is_numeric($number)) {
             throw new \Exception('Is not a number');
         }
+    }
+
+    /**
+     * @param $number
+     * @return bool
+     */
+    protected function isNumberMultipleOfThree($number): bool
+    {
+        return 0 === $number % 3;
     }
 }
