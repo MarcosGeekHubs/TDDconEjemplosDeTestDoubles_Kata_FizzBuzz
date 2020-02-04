@@ -7,9 +7,9 @@
  */
 
 
-require_once 'src/Factorial.php';
+require_once 'src/FizzBuzz.php';
 
 
-$factorial = new \Kata\Factorial();
-$a = $factorial->checkNumber();
+$factorial = new \Kata\FizzBuzz();
+$a = $factorial->print();
 echo $a;

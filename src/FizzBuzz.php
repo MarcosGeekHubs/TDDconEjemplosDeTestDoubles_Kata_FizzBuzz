@@ -3,9 +3,9 @@
 
 namespace Kata;
 
-class Factorial
+class FizzBuzz
 {
-    public function checkNumber($number)
+    public  function print($number)
     {
         return $number;
     }

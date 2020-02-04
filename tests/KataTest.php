@@ -3,7 +3,7 @@
 
 namespace Kata\Test;
 
-use Kata\Factorial;
+use Kata\FizzBuzz;
 
 use PHPUnit\Framework\TestCase;
 
@@ -18,10 +18,10 @@ class KataTest extends TestCase
         $fizzBuzz = new FizzBuzz();
 
         //When
-        $fizzBuzz->pirnt(1);
+        $result = $fizzBuzz->print(1);
 
         //Then
-        $this->assertEquals(1, $kata->checkNumber(1));
+        $this->assertEquals(1, $result);
     }
 
 
