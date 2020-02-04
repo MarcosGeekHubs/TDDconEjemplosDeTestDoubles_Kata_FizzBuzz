@@ -5,7 +5,6 @@ namespace Kata\Test;
 
 use Kata\DatabaseFake;
 use Kata\FizzBuzz;
-
 use PHPUnit\Framework\TestCase;
 
 
@@ -23,10 +22,12 @@ class KataTest extends TestCase
         // $result = $this->fizzbuzz->passNumber(3);
         //$this->fizzBuzz = new FizzBuzz($this->databaseFake);
 
-        $databaseStub = $this->createMock(DatabaseFake::class);
-        $databaseStub->method('getStringToThreeNumber')->willReturn('Fizz');
+        $this->databaseFake = $this->createMock(DatabaseFake::class);
+        $this->databaseFake->method('getStringToThreeNumber')->willReturn('Fizz');
+        $this->databaseFake->method('initConection');
 
-        $this->fizzBuzz = new FizzBuzz($databaseStub);
+        $this->fizzBuzz = new FizzBuzz($this->databaseFake);
+
 
     }
 
@@ -62,13 +63,24 @@ class KataTest extends TestCase
     }
 
     /** @test */
-    public function return_three_when_print_number_tree()
+    public function return_fizz_when_print_number_tree()
     {
+
+
         //When
         $result = $this->fizzBuzz->print(3);
 
         //Then
         $this->assertEquals('Fizz', $result);
+    }
+
+    /** @test */
+    public function should_be_called_function_initConection_one_time()
+    {
+        $this->databaseFake->expects($this->exactly(1))->method('initConection');
+
+        //When
+        $this->fizzBuzz->print(3);
     }
 
 

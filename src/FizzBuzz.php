@@ -18,6 +18,7 @@ class FizzBuzz
         $this->isNotIntegerThowException($number);
         $result = $number;
         if ($this->isNumberMultipleOfThree($number)) {
+            $this->database->initConection();
             $result =  $this->database->getStringToThreeNumber();
         }
 
