@@ -38,7 +38,7 @@ class KataTest extends TestCase
     public function return_one_when_print_number_one()
     {
         //Test double Spy
-        $this->databaseFake->expects($this->never())->method('initConection');
+        $this->expectInitConnectNeverCalled();
 
         //When
         $result = $this->fizzBuzz->print(1);
@@ -51,7 +51,7 @@ class KataTest extends TestCase
     public function return_two_when_print_number_two()
     {
         //Test double Spy
-        $this->databaseFake->expects($this->never())->method('initConection');
+        $this->expectInitConnectNeverCalled();
 
         //When
         $result = $this->fizzBuzz->print(2);
@@ -64,7 +64,7 @@ class KataTest extends TestCase
     public function throw_exception_when_argument_is_string()
     {
         //Test double Spy
-        $this->databaseFake->expects($this->never())->method('initConection');
+        $this->expectInitConnectNeverCalled();
 
         $this->expectException(\Exception::class);
         //When
@@ -92,7 +92,7 @@ class KataTest extends TestCase
     public function return_buzz_when_print_number_five()
     {
         //Test double Spy
-        $this->databaseFake->expects($this->exactly(1))->method('initConection');
+        $this->expectInitConnectNeverCalled();
 
         //Test double Stuff
         //When
@@ -101,6 +101,11 @@ class KataTest extends TestCase
         //Then
         $this->assertEquals('Buzz', $result);
     }
-    
+
+    protected function expectInitConnectNeverCalled(): void
+    {
+        $this->databaseFake->expects($this->never())->method('initConection');
+    }
+
 
 }

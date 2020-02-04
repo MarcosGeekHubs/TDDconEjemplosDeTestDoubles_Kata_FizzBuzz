@@ -6,6 +6,8 @@ namespace Kata;
 
 class FizzBuzz
 {
+    const MULTIPLE_OF_THREE = 3;
+    const MULTIPLE_OF_FIVE = 5;
     protected $database;
 
     public function __construct(DatabaseInterface $database)
@@ -17,10 +19,15 @@ class FizzBuzz
     {
         $this->isNotIntegerThowException($number);
         $result = $number;
-        if ($this->isNumberMultipleOfThree($number)) {
+        if ($this->isNumberMultipleOf($number, self::MULTIPLE_OF_THREE)) {
             $this->database->initConection();
-            $result =  $this->database->getStringToThreeNumber();
+            $result = $this->database->getStringToThreeNumber();
         }
+
+        if ($this->isNumberMultipleOf($number, self::MULTIPLE_OF_FIVE)) {
+            $result = $this->database->getStringToFiveNumber();
+        }
+
 
         return $result;
     }
@@ -40,8 +47,10 @@ class FizzBuzz
      * @param $number
      * @return bool
      */
-    protected function isNumberMultipleOfThree($number): bool
+    protected function isNumberMultipleOf($number, $multiple): bool
     {
-        return 0 === $number % 3;
+        return 0 === $number % $multiple;
     }
+
+
 }

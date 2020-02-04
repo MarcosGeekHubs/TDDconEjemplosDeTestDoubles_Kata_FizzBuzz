@@ -19,4 +19,8 @@ class DatabaseFake implements DatabaseInterface
 
     }
 
+    public function getStringToFiveNumber()
+    {
+        return 'Buzz';
+    }
 }
