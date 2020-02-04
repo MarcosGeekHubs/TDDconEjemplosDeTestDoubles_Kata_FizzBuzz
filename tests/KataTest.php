@@ -23,17 +23,22 @@ class KataTest extends TestCase
         //$this->fizzBuzz = new FizzBuzz($this->databaseFake);
 
         $this->databaseFake = $this->createMock(DatabaseFake::class);
+        //Test Double Stuff
         $this->databaseFake->method('getStringToThreeNumber')->willReturn('Fizz');
+
+        //Test Double Spy
         $this->databaseFake->method('initConection');
 
         $this->fizzBuzz = new FizzBuzz($this->databaseFake);
-
 
     }
 
     /** @test */
     public function return_one_when_print_number_one()
     {
+        //Test double Spy
+        $this->databaseFake->expects($this->never())->method('initConection');
+
         //When
         $result = $this->fizzBuzz->print(1);
 
@@ -44,6 +49,9 @@ class KataTest extends TestCase
     /** @test */
     public function return_two_when_print_number_two()
     {
+        //Test double Spy
+        $this->databaseFake->expects($this->never())->method('initConection');
+
         //When
         $result = $this->fizzBuzz->print(2);
 
@@ -54,6 +62,9 @@ class KataTest extends TestCase
     /** @test */
     public function throw_exception_when_argument_is_string()
     {
+        //Test double Spy
+        $this->databaseFake->expects($this->never())->method('initConection');
+
         $this->expectException(\Exception::class);
         //When
         $result = $this->fizzBuzz->print('two');
@@ -65,31 +76,16 @@ class KataTest extends TestCase
     /** @test */
     public function return_fizz_when_print_number_tree()
     {
+        //Test double Spy
+        $this->databaseFake->expects($this->exactly(1))->method('initConection');
 
-
+        //Test double Stuff
         //When
         $result = $this->fizzBuzz->print(3);
 
         //Then
         $this->assertEquals('Fizz', $result);
     }
-
-    /** @test */
-    public function should_be_called_function_initConection_one_time()
-    {
-        $this->databaseFake->expects($this->exactly(1))->method('initConection');
-
-        //When
-        $this->fizzBuzz->print(3);
-    }
-
-    /** @test */
-    public function should_be_called_function_initConection_never()
-    {
-        $this->databaseFake->expects($this->never())->method('initConection');
-
-        //When
-        $this->fizzBuzz->print(1);
-    }
+    
 
 }
