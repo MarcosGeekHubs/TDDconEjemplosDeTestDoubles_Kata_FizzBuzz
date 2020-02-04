@@ -83,5 +83,13 @@ class KataTest extends TestCase
         $this->fizzBuzz->print(3);
     }
 
+    /** @test */
+    public function should_be_called_function_initConection_never()
+    {
+        $this->databaseFake->expects($this->never())->method('initConection');
+
+        //When
+        $this->fizzBuzz->print(1);
+    }
 
 }
