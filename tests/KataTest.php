@@ -24,5 +24,18 @@ class KataTest extends TestCase
         $this->assertEquals(1, $result);
     }
 
+    /** @test */
+    public function return_two_when_print_number_two()
+    {
+        //Given
+        $fizzBuzz = new FizzBuzz();
+
+        //When
+        $result = $fizzBuzz->print(2);
+
+        //Then
+        $this->assertEquals(2, $result);
+    }
+
 
 }
