@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web_kata_tdd_doubles:
+    build: .
+    container_name: TDD_Doubles_kata
+    ports:
+      - "8001:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
