@@ -7,7 +7,6 @@ use Kata\DatabaseFake;
 use Kata\FizzBuzz;
 
 use PHPUnit\Framework\TestCase;
-use http\Exception\InvalidArgumentException;
 
 
 class KataTest extends TestCase
