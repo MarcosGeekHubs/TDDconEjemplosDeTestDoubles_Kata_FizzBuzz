@@ -19,7 +19,14 @@ class KataTest extends TestCase
     {
         //Given
         $this->databaseFake = new DatabaseFake();
-        $this->fizzBuzz = new FizzBuzz($this->databaseFake);
+
+        // $result = $this->fizzbuzz->passNumber(3);
+        //$this->fizzBuzz = new FizzBuzz($this->databaseFake);
+
+        $databaseStub = $this->createMock(DatabaseFake::class);
+        $databaseStub->method('getStringToThreeNumber')->willReturn('Fizz');
+
+        $this->fizzBuzz = new FizzBuzz($databaseStub);
 
     }
 
